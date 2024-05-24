@@ -1,6 +1,6 @@
 let nombreJugador = prompt("Ingresa el nombre del jugador");
 
-let fechasYGoles;
+let fechasYGoles = [];
 let cantidadFechas;
 let cantidadGoles;
 
@@ -12,13 +12,19 @@ do {
         fecha: cantidadFechas,
         goles: cantidadGoles
     }
-    fechasYGoles.push(info)
+    fechasYGoles.push(info);
     }
-} while (cantidadFechas.toLocaleLowerCase() !== "salir")
+} while (cantidadFechas.toLowerCase() !== "salir")
 
     function calcularGoles() {
         let total = fechasYGoles.reduce((acc, cantidad) => acc + cantidad.goles, 0);
         return total;
     }
 
-    console.log(calcularGoles)
+    function promedioGoles() {
+        let total = calcularGoles();
+        let promedio = total / fechasYGoles.length;
+        return promedio;
+    }
+
+    console.log(nombreJugador + " convirtio " + calcularGoles() + " goles a lo largo de " + fechasYGoles.length + " fechas, y tiene un promedio de gol por partido de: " + promedioGoles() )
